@@ -17,7 +17,11 @@ export class AuthService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     private readonly jwtService: JwtService,
   ) {
-    this.redisClient = new Redis();
+    this.redisClient = new Redis({
+      host: 'localhost', // replace with your Redis server host
+      port: 6379,        // replace with your Redis server port
+      password: 'redis-password' // replace with your Redis password
+  });
   }
 
   // Helper function to validate username format

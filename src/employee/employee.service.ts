@@ -8,7 +8,6 @@ interface FilterOptions {
   designation?: string;
   department?: string;
 }
-
 interface SortOptions {
   field: string;
   order: 'asc' | 'desc';
@@ -29,7 +28,7 @@ export class EmployeeService {
     filterOptions: FilterOptions = {},
     sortOptions: SortOptions = { field: 'createdAt', order: 'asc' }
   ): Promise<Employee[]> {
-    const { designation, department } = filterOptions;
+    const {  designation, department } = filterOptions;
     const { field, order } = sortOptions;
 
     const query: any = {};
@@ -47,4 +46,18 @@ export class EmployeeService {
       .sort({ [field]: order })
       .exec();
   }
+  async getAllFilters(
+    filterOptions: FilterOptions = {},
+    sortOptions: SortOptions = { field: 'createdAt', order: 'asc' }
+  ): Promise<any> {
+    const { field, order } = sortOptions;
+
+    const distinctDepartments:any = await this.employeeModel.distinct('department').exec();
+    const distinctDesignations:any = await this.employeeModel.distinct('designation').exec();
+
+    return {
+      department: distinctDepartments,
+      designation: distinctDesignations,
+    };
+}
 }

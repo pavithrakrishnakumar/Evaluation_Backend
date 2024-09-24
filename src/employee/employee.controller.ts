@@ -22,4 +22,12 @@ export class EmployeeController {
   ) {
     return this.employeeService.getAllEmployees(query);
   }
+
+  @Get('allfilter')
+  @UseGuards(JwtAuthGuard)
+  async getAllFilters(
+    @Query() query: GetAllEmployeesDto, 
+  ) {
+    return this.employeeService.getAllFilters(query);
+  }
 }
