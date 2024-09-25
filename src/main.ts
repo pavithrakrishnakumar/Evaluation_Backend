@@ -8,11 +8,11 @@ async function bootstrap() {
   // Enable CORS
   app.enableCors({
     origin: '*', // You can specify the allowed origins here
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    methods: 'GET,POST',
     allowedHeaders: 'Content-Type, Authorization',
   });
   // Enable global validation
-app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(3000);
 }

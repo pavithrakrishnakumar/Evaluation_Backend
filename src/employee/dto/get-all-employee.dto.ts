@@ -11,6 +11,14 @@ export class GetAllEmployeesDto {
 
   @IsOptional()
   @IsString()
+  name?: string;
+
+  @IsOptional()
+  @IsString()
+  page?: string = '1';
+
+  @IsOptional()
+  @IsString()
   sortField?: string = 'createdAt'; // Default to 'createdAt'
 
   @IsOptional()

@@ -8,7 +8,11 @@ import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/authentication'),
+    ConfigModule.forRoot({
+      isGlobal: true, // Makes the config module globally available
+      envFilePath: '.env', // Path to your .env file
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URL),
     AuthModule,
     EmployeeModule,
   ],

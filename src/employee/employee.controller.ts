@@ -25,9 +25,7 @@ export class EmployeeController {
 
   @Get('allfilter')
   @UseGuards(JwtAuthGuard)
-  async getAllFilters(
-    @Query() query: GetAllEmployeesDto, 
-  ) {
-    return this.employeeService.getAllFilters(query);
+  async getAllFilters() {
+    return this.employeeService.getAllFilters();
   }
 }

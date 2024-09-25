@@ -18,9 +18,9 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {
     this.redisClient = new Redis({
-      host: 'localhost', // replace with your Redis server host
-      port: 6379,        // replace with your Redis server port
-      password: 'redis-password' // replace with your Redis password
+      host: process.env.REDIS_HOST, // replace with your Redis server host
+      port: Number(process.env.REDIS_PORT),        // replace with your Redis server port
+      password: process.env.REDIS_PASSWORD // replace with your Redis password
   });
   }
 
@@ -70,7 +70,7 @@ export class AuthService {
 
     await this.redisClient.set(
       user.username,
-      JSON.stringify({ token, user }),
+      JSON.stringify({ token }),
       'EX',
       AppConstants.REDIS_EXPIRATION, // Redis expiration from constants
     );
